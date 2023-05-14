@@ -1,0 +1,80 @@
+<!--<!DOCTYPE HTML>-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="path/to/custom.css">
+
+  <title>Job Expanded</title>
+</head>
+
+<body>
+<div class="container">
+  <div class="row justify-content-center align-items-center mt-5">
+    <div class="col-md-6 text-center">
+      <h1 class="display-4 text-primary mb-5">Job Expanded</h1>
+      <hr>
+      <h3 class="my-5">
+        <i class="fa fa-address-card text-success"></i>
+
+        <span class="text-dark">Owner:</span>
+        <a style="text-decoration:none" th:href="@{/job/search(owner =${job.owner})}">
+          <span th:text="${job.owner}" class="text-info"></span>
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="row justify-content-center align-items-center my-5">
+    <div class="col-md-8">
+      <table class="table table-hover">
+        <thead class="bg-info text-light">
+        <tr>
+          <th>Status</th>
+          <th>Queued</th>
+          <th>Started</th>
+          <th>Ended</th>
+          <th>Duration</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:class="${job.jobStatus != 'Completed'} ? 'table-danger' : 'table-success'">
+          <td>
+                <span th:if="${job.jobStatus == 'Completed'}" class="text-success">
+                  <i class="fas fa-check-circle"></i> Completed
+                </span>
+            <span th:if="${job.jobStatus != 'Completed'}" class="text-danger">
+                  <i class="fas fa-exclamation-circle"></i> Job Error
+                </span>
+          </td>
+          <td th:text="${job.queuedTime}" />
+          <td th:text="${job.startTime}" />
+          <td th:text="${job.endTime}" />
+          <td th:text="${job.duration}" />
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-q7jyUVJSQjTN3+Pp6GcVgSmx5fskI9Av1+gRm8Cv4z5B+YbLqcD1W5idWlKtczfs" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
